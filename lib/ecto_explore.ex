@@ -11,8 +11,8 @@ defmodule EctoExplore do
       # Starts a worker by calling: EctoExplore.Worker.start_link(arg1, arg2, arg3)
       # worker(EctoExplore.Worker, [arg1, arg2, arg3]),
 
-      # setup EctoExplore.Repo as worker
-      worker(EctoExpore, [])
+      # starts the ecto process that receives and queries DB. Useless app if forgot to set
+      supervisor(EctoExplore.Repo, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

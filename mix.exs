@@ -14,7 +14,7 @@ defmodule EctoExplore.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :ecto, :postgrex],
+    [applications: [:logger, :postgrex, :ecto],
      mod: {EctoExplore, []}]
   end
 
@@ -30,7 +30,7 @@ defmodule EctoExplore.Mixfile do
   defp deps do
     [
       {:postgrex, "~> 0.11"},
-      {:ecto, "~> 2.0"}
+      {:ecto, "~> 2.0"},
     ]
   end
 end
