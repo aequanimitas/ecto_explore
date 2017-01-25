@@ -14,10 +14,10 @@
 
 ```
 task = Task.changeset %Task{}, %{
-	name: "kicking fish", 
-	date_start: ~D[2017-01-10], 
-	date_end: ~D[2017-01-10], 
-	time_start: ~N[2017-01-10 16:30:00], 
+	name: "kicking fish",
+	date_start: ~D[2017-01-10],
+	date_end: ~D[2017-01-10],
+	time_start: ~N[2017-01-10 16:30:00],
 	time_end: ~N[2017-01-10 17: 00:00]}
 
 Repo.insert! task
@@ -31,4 +31,23 @@ kicking fish", {{2017, 1, 10}, {17, 0, 0, 0}}, {{2017, 1, 10}, {16, 30, 0, 0}}, 
 ```
 task = Repo.get(from(Task, preload: [:user]), 1)
 
+```
+
+### Retrieve
+
+- piping
+```
+# retrieve only given fields, contain in the data structure of your choice
+iex(40)> x = Category |> select([c], %{"name" => c.name, "id" => c.id}) |> where([c], ilike(c.name, ^"Sci%")) |> Repo.one()
+iex> x.id
+5
+iex> x["id"]
+nil
+
+# using colons, use [""] operator when referencing fields
+iex(40)> x = Category |> select([c], %{"name": c.name, "id": c.id}) |> where([c], ilike(c.name, ^"Sci%")) |> Repo.one()
+iex> x.id
+nil
+iex> x["id"]
+5
 ```
